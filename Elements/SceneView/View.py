@@ -5,10 +5,6 @@ class View(QGraphicsView):
     def __init__(self, parent=None):
         super().__init__(parent)
 
-        for key in dir(self):
-            if callable(getattr(self, key)):
-                print(key)
-
         # acceptDrops
         # accessibleDescription
         # accessibleIdentifier
@@ -423,3 +419,15 @@ class View(QGraphicsView):
         # windowType
         # x
         # y
+
+    def accessibleProperties(self):
+
+        ## properties for assistive technologies like screen readers
+        self.accessibleName()
+        self.setAccessibleName("accessible name")
+
+        self.accessibleDescription()
+        self.setAccessibleDescription("accessible description")
+
+        self.accessibleIdentifier()
+        self.setAccessibleIdentifier("accessible identifier")
