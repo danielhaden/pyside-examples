@@ -20,10 +20,8 @@ class Scene(QGraphicsScene):
 
             self.lines.append(self.addCustomLine(x1, y1, x2, y2))
 
-
         # activePanel
         # activeWindow
-
         # advance
         # backgroundBrush
         # blockSignals
@@ -143,36 +141,14 @@ class Scene(QGraphicsScene):
         # wheelEvent
         # width
 
-    def wheelEvent(self, event):
+    def children(self):
         """
-        Handles mouse wheel events
-        :param event:
+        Returns child elements. For a QGraphicsScene, this is typically a singleton QObject
         :return:
         """
+        return super().children()
 
-        if type(event) == QGraphicsSceneWheelEvent:
 
-            ## Mouse button handling
-            if event.buttons().value == 1:
-                print("left button caught")
-
-                # process the event and stop it from propagating further up the widget hierarchy
-                event.accept()
-
-            elif event.buttons().value == 2:
-                print("right button caught")
-
-                # propagte the event further up the widget hierarchy
-
-                if not event.isAccepted():
-                    event.ignore()
-
-            ## Wheel direction and velocity handling
-            if event.delta() > 0:
-                print("wheel was rotated forward")
-
-            elif event.delta() < 0:
-                print("wheel was rotated backward")
 
         # event.accept()
         # event.clone()

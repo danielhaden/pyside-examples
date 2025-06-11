@@ -5,10 +5,10 @@ class View(QGraphicsView):
     def __init__(self, parent=None):
         super().__init__(parent)
 
+        self.scale_factor = 1.10
+        self.setTransformationAnchor(QGraphicsView.ViewportAnchor.AnchorUnderMouse)
+
         # acceptDrops
-        # accessibleDescription
-        # accessibleIdentifier
-        # accessibleName
         # actionEvent
         # actions
         # activateWindow
@@ -28,7 +28,6 @@ class View(QGraphicsView):
         # changeEvent
         # childAt
         # childEvent
-        # children
         # childrenRect
         # childrenRegion
         # clearFocus
@@ -398,7 +397,6 @@ class View(QGraphicsView):
         # viewportUpdateMode
         # visibleRegion
         # whatsThis
-        # wheelEvent
         # width
         # widthMM
         # winId
@@ -419,6 +417,48 @@ class View(QGraphicsView):
         # windowType
         # x
         # y
+
+    def zoom_in(self):
+        self.scale(self.scale_factor, self.scale_factor)
+
+    def zoom_out(self):
+        self.scale(1/ self.scale_factor, 1/ self.scale_factor)
+
+    def wheelEvent(self, event):
+        """
+        Handles mouse wheel events
+        :param event:
+        :return:
+        """
+
+        ## Mouse button handling
+        if event.buttons().value == 1:
+            print("left button caught")
+
+            # process the event and stop it from propagating further up the widget hierarchy
+            event.accept()
+
+        elif event.buttons().value == 2:
+            print("right button caught")
+
+            # propagte the event further up the widget hierarchy
+            if not event.isAccepted():
+                event.ignore()
+
+        ## Wheel direction and velocity handling
+        if event.angleDelta().y() > 0:
+            self.zoom_in()
+
+        else:
+            self.zoom_out()
+
+
+    def children(self):
+        """
+        Gets child elements which whill typically be ScrollArea elements and a QWidget
+        :return:
+        """
+        elements = super().children()
 
     def accessibleProperties(self):
 
