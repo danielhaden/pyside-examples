@@ -17,10 +17,8 @@ class LineItem(QGraphicsLineItem):
         # Tool Tip getter/setter
         #self.setToolTip("LineItem ToolTip!")
         #print(self.toolTip())
-
         # self.acceptDrops()
         # self.setAcceptDrops(True)
-
         #item.acceptDrops()
         #item.acceptHoverEvents()
         #item.acceptedMouseButtons()

@@ -4,6 +4,9 @@ from PySide6.QtWidgets import (
     QGraphicsScene,
     QGraphicsLineItem, QGraphicsSceneWheelEvent
 )
+
+from Elements.GraphicsShapes.GraphicsItem import GraphicsItem
+from Elements.GraphicsShapes.GraphicsWidget import GraphicsWidget
 from Elements.GraphicsShapes.LineItem import LineItem
 import random
 
@@ -12,13 +15,17 @@ class Scene(QGraphicsScene):
         super().__init__(parent)
 
         self.lines = []
-        for i in range(0, 1000):
-            x1 = random.randint(0, 700)
-            y1 = random.randint(0, 700)
-            x2 = random.randint(0, 700)
-            y2 = random.randint(0, 700)
 
-            self.lines.append(self.addCustomLine(x1, y1, x2, y2))
+        ellip = GraphicsWidget(20, 20, 120, 120, "test Content")
+        self.addItem(ellip)
+
+        # for i in range(0, 1000):
+        #     x1 = random.randint(0, 700)
+        #     y1 = random.randint(0, 700)
+        #     x2 = random.randint(0, 700)
+        #     y2 = random.randint(0, 700)
+        #
+        #     self.lines.append(self.addCustomLine(x1, y1, x2, y2))
 
         # activePanel
         # activeWindow

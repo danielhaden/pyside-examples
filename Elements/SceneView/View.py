@@ -1,3 +1,4 @@
+from PySide6.QtGui import QPainter
 from PySide6.QtWidgets import QGraphicsView
 
 
@@ -6,7 +7,8 @@ class View(QGraphicsView):
         super().__init__(parent)
 
         self.scale_factor = 1.10
-        self.setTransformationAnchor(QGraphicsView.ViewportAnchor.AnchorUnderMouse)
+        ##self.setTransformationAnchor(QGraphicsView.ViewportAnchor.AnchorUnderMouse)
+        self.setRenderHints(QPainter.RenderHint.Antialiasing)
 
         #self.contentsMargins()
         #self.setContentsMargins()
