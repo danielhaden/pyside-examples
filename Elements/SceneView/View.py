@@ -8,6 +8,9 @@ class View(QGraphicsView):
         self.scale_factor = 1.10
         self.setTransformationAnchor(QGraphicsView.ViewportAnchor.AnchorUnderMouse)
 
+        #self.contentsMargins()
+        #self.setContentsMargins()
+
         # acceptDrops
         # actionEvent
         # actions
@@ -417,6 +420,11 @@ class View(QGraphicsView):
         # windowType
         # x
         # y
+
+
+    def keyPressEvent(self, event):
+        if event.key() == 75: ## "k pressed"
+            self.resetTransform()
 
     def zoom_in(self):
         self.scale(self.scale_factor, self.scale_factor)
