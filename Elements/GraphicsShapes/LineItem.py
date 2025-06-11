@@ -12,13 +12,14 @@ class LineItem(QGraphicsLineItem):
         # make the items movable and selectable
         self.setFlag(QGraphicsLineItem.GraphicsItemFlag.ItemIsMovable)
         self.setFlag(QGraphicsLineItem.GraphicsItemFlag.ItemIsSelectable)
+        self.setAcceptHoverEvents(True)
 
         # Tool Tip getter/setter
-        self.setToolTip("LineItem ToolTip!")
-        print(self.toolTip())
+        #self.setToolTip("LineItem ToolTip!")
+        #print(self.toolTip())
 
-        self.acceptDrops()
-        self.setAcceptDrops(True)
+        # self.acceptDrops()
+        # self.setAcceptDrops(True)
 
         #item.acceptDrops()
         #item.acceptHoverEvents()
@@ -64,9 +65,7 @@ class LineItem(QGraphicsLineItem):
         #item.hasCursor()
         #item.hasFocus()
         #item.hide()
-        #item.hoverEnterEvent()
-        #item.hoverLeaveEvent()
-        #item.hoverMoveEvent()
+
         #item.inputMethodEvent()
         #item.inputMethodHints()
         #item.inputMethodQuery()
@@ -172,8 +171,20 @@ class LineItem(QGraphicsLineItem):
         #     if callable(getattr(item, key)):
         #         print(key)
 
-    def dropEvent(self, event):
-        print("dropEvent")
+    # item.hoverLeaveEvent()
+    # item.hoverMoveEvent()
+
+    def hoverEnterEvent(self, event):
+        self.setPen(QPen(Qt.red, 3))
+        event.accept()
+
+    def hoverMoveEvent(self, event):
+        event.accept()
+
+    def hoverLeaveEvent(self, event):
+        self.setPen(self._default_pen)
+        event.accept()
+        self.itemChange(None, None)
 
     def pen(self):
         return self._default_pen
@@ -188,6 +199,9 @@ class LineItem(QGraphicsLineItem):
         :param value: A value associated with the change. In the case of ItemSelectedChange, value=1 if selected, and value=0 if deselected.
         :return: value by default
         """
+
+        if change == None:
+            return super().itemChange(QGraphicsLineItem.GraphicsItemChange.ItemSelectedChange, value)
 
         if change == QGraphicsLineItem.GraphicsItemChange.ItemSelectedChange:
 

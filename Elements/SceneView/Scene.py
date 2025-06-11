@@ -1,17 +1,234 @@
 from PySide6.QtGui import QPen
-from PySide6.QtCore import Qt
+from PySide6.QtCore import Qt, QRect
 from PySide6.QtWidgets import (
     QGraphicsScene,
-    QGraphicsLineItem
+    QGraphicsLineItem, QGraphicsSceneWheelEvent
 )
-from Elements.LineItem import LineItem
+from Elements.GraphicsShapes.LineItem import LineItem
+import random
 
 class Scene(QGraphicsScene):
     def __init__(self, parent=None):
         super().__init__(parent)
 
-        simple_line = self.addLine(60, 80, 90, 20)
-        custom_line = self.addCustomLine(20, 50, 100, 40)
+        self.lines = []
+        for i in range(0, 1000):
+            x1 = random.randint(0, 700)
+            y1 = random.randint(0, 700)
+            x2 = random.randint(0, 700)
+            y2 = random.randint(0, 700)
+
+            self.lines.append(self.addCustomLine(x1, y1, x2, y2))
+
+
+        # activePanel
+        # activeWindow
+
+        # advance
+        # backgroundBrush
+        # blockSignals
+        # bspTreeDepth
+        # changed
+        # childEvent
+        # children
+        # clear
+        # clearFocus
+        # clearSelection
+        # collidingItems
+        # connect
+        # connectNotify
+        # contextMenuEvent
+        # createItemGroup
+        # customEvent
+        # deleteLater
+        # destroyItemGroup
+        # destroyed
+        # disconnect
+        # disconnectNotify
+        # dragEnterEvent
+        # dragLeaveEvent
+        # dragMoveEvent
+        # drawBackground
+        # drawForeground
+        # dropEvent
+        # dumpObjectInfo
+        # dumpObjectTree
+        # dynamicPropertyNames
+        # emit
+        # event
+        # eventFilter
+        # findChild
+        # findChildren
+        # focusInEvent
+        # focusItem
+        # focusItemChanged
+        # focusNextPrevChild
+        # focusOnTouch
+        # focusOutEvent
+        # font
+        # foregroundBrush
+        # hasFocus
+        # height
+        # helpEvent
+        # inherits
+        # inputMethodEvent
+        # inputMethodQuery
+        # installEventFilter
+        # invalidate
+        # isActive
+        # isQuickItemType
+        # isSignalConnected
+        # isWidgetType
+        # isWindowType
+        # itemAt
+        # itemIndexMethod
+        # items
+        # itemsBoundingRect
+        # keyPressEvent
+        # keyReleaseEvent
+        # killTimer
+        # metaObject
+        # minimumRenderSize
+        # mouseDoubleClickEvent
+        # mouseGrabberItem
+        # mouseMoveEvent
+        # mousePressEvent
+        # mouseReleaseEvent
+        # moveToThread
+        # objectName
+        # objectNameChanged
+        # palette
+        # parent
+        # property
+        # receivers
+        # removeEventFilter
+        # removeItem
+        # render
+        # sceneRect
+        # sceneRectChanged
+        # selectedItems
+        # selectionArea
+        # selectionChanged
+        # sendEvent
+        # sender
+        # senderSignalIndex
+        # setActivePanel
+        # setActiveWindow
+        # setBackgroundBrush
+        # setBspTreeDepth
+        # setFocus
+        # setFocusItem
+        # setFocusOnTouch
+        # setFont
+        # setForegroundBrush
+        # setItemIndexMethod
+        # setMinimumRenderSize
+        # setObjectName
+        # setPalette
+        # setParent
+        # setProperty
+        # setSceneRect
+        # setSelectionArea
+        # setStickyFocus
+        # setStyle
+        # signalsBlocked
+        # startTimer
+        # stickyFocus
+        # style
+        # thread
+        # timerEvent
+        # tr
+        # update
+        # views
+        # wheelEvent
+        # width
+
+    def wheelEvent(self, event):
+        """
+        Handles mouse wheel events
+        :param event:
+        :return:
+        """
+
+        if type(event) == QGraphicsSceneWheelEvent:
+
+            ## Mouse button handling
+            if event.buttons().value == 1:
+                print("left button caught")
+
+                # process the event and stop it from propagating further up the widget hierarchy
+                event.accept()
+
+            elif event.buttons().value == 2:
+                print("right button caught")
+
+                # propagte the event further up the widget hierarchy
+
+                if not event.isAccepted():
+                    event.ignore()
+
+            ## Wheel direction and velocity handling
+            if event.delta() > 0:
+                print("wheel was rotated forward")
+
+            elif event.delta() < 0:
+                print("wheel was rotated backward")
+
+        # event.accept()
+        # event.clone()
+
+        # isInputEvent
+        # isInverted
+        # isPointerEvent
+        # isSinglePointEvent
+        # modifiers
+        # orientation
+        # phase
+        # pixelDelta
+        # pos
+        # registerEventType
+        # scenePos
+        # screenPos
+        # setAccepted
+        # setButtons
+        # setDelta
+        # setInverted
+        # setModifiers
+        # setOrientation
+        # setPhase
+        # setPixelDelta
+        # setPos
+        # setScenePos
+        # setScreenPos
+        # setTimestamp
+        # spontaneous
+        # timestamp
+        # type
+        # widget
+
+    def addPath(self):
+        return
+
+    def addPixmap(self, pixmap):
+        return
+
+    def addPolygon(self, polygon):
+        return
+
+    def addRect(self, rect):
+        return
+
+    def addSimpleText(self, text):
+        return
+
+    def addText(self, text):
+        return
+
+    def addWidget(self, widget):
+        return
+
+    def addEllipse(self):
+        super().addEllipse(QRect(20, 20, 100, 100))
 
     def addLine(self, x1, y1, x2, y2):
         """
